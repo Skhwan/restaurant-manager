@@ -15,19 +15,14 @@ import java.util.ArrayList;
 public class MenuRowMapper implements RowMapper {
     @Override
     public Menu mapRow(ResultSet resultSet, int row) throws SQLException {
-        String name = resultSet.getString("name");
+        String name = resultSet.getString("menu_name");
         String description = resultSet.getString("description");
         String image = resultSet.getString("image");
         int price = resultSet.getInt("price");
-
-        String[] rawAdditional = resultSet.getString("additional").split(",");
-        ArrayList<String> additiontal = new ArrayList<>();
-        for (String add: rawAdditional) {
-            additiontal.add(add);
-        }
+        String[] additional = resultSet.getString("additional").split(",");
 
         Menu menu = new Menu(name, description, image, price);
-        menu.setAdditional(additiontal);
+        menu.setAdditional(additional);
 
         return menu;
     }

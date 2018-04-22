@@ -31,10 +31,10 @@ public class OrderDao {
                 new Object[] { id });
     }
 
-    public int insertOrder(Order order) {
-        return jdbcTemplate.update("insert into customer_order (bill_no, menu, quantity, ordered_time, checked_out) " + "values(?,  ?, ?, ?, ?)",
+    public int addOrder(Order order) {
+        return jdbcTemplate.update("insert into customer_order (bill_no, menu, quantity, ordered_time, checked_out) " + "values(?, ?, ?, ?, ?)",
             new Object[] {
-                    order.getBillNo(), order.getMenu(), order.getQuantity(), order.getOrderedTime(), 1
+                    order.getBillNo(), order.getMenu().toUpperCase(), order.getQuantity(), order.getOrderedTime(), 1
             });
     }
 

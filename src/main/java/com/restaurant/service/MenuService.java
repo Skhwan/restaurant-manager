@@ -1,5 +1,9 @@
 package com.restaurant.service;
 
+import com.restaurant.controller.MenuController;
+import com.restaurant.util.ResponseWrapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -10,29 +14,32 @@ import java.util.Map;
 @RestController
 public class MenuService {
 
-    @PostMapping("/addMenu")
-    public void addMenu(@RequestBody Map<String, String> body){
+    @Autowired
+    MenuController menuController;
 
+    @PostMapping("/addMenu")
+    public ResponseEntity addMenu(@RequestBody Map<String, String> body){
+        return menuController.addMenu(body);
     }
 
     @PostMapping("/updateMenu")
-    public void updateMenu(@RequestBody Map<String, String> body){
-
+    public ResponseEntity updateMenu(@RequestBody Map<String, String> body){
+        return menuController.addMenu(body);
     }
 
-    @GetMapping("/deleteMenu")
-    public void deleteMenu(@RequestParam String name){
-
+    @GetMapping("/removeMenu")
+    public ResponseEntity removeMenu(@RequestParam String name){
+        return menuController.removeMenu(name);
     }
 
     @GetMapping("/searchMenu")
-    public void searchMenu(@RequestParam String keyword, @RequestParam int limit, int offset){
-
+    public ResponseEntity<ResponseWrapper> searchMenu(@RequestParam String keyword, @RequestParam int limit, int offset){
+        return menuController.searchMenu(keyword, limit, offset);
     }
 
-    @GetMapping("getAll")
-    public void getAllMenu(@RequestParam int limit, @RequestParam int offset){
-
+    @GetMapping("getAllMenu")
+    public ResponseEntity getAllMenu(@RequestParam int limit, @RequestParam int offset){
+        return menuController.getAllMenu(limit, offset);
     }
 
 }

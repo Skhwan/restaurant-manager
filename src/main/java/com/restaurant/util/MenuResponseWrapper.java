@@ -34,7 +34,7 @@ public class MenuResponseWrapper extends ResponseWrapper {
         this.nextPage = nextPage;
     }
 
-    public void setMenus(ArrayList menus){
+    public void setMenus(List<Menu> menus){
         this.menus = menus;
     }
 
@@ -48,7 +48,7 @@ public class MenuResponseWrapper extends ResponseWrapper {
                 " resultCode=" + getResponseCode() +
                 " resultStatus=" + getResponseStatus() +
                 " resultDesc=" + getResponseDesc() +
-                " orders=" + getMenus() +
+                " menu=" + getMenus() +
                 " previousPage=" + getPreviousPage() +
                 " nextPage=" + getNextPage() +
                 " }";

@@ -35,24 +35,18 @@ public class OrderController {
 
     public ResponseEntity<ResponseWrapper> addOrder(Map<String, String> body) {
         ResponseWrapper responseWrapper = new ResponseWrapper();
-        String responseCode;
-        String responseDesc;
-        String responseStatus;
         try {
             Timestamp timestamp = getCurrentTime();
             Order order = new Order(body.get("billNo"), body.get("menu"), Integer.parseInt(body.get("quantity")), timestamp);
-            orderDao.insertOrder(order);
-            responseCode = ResponseConstant.SUCCESS_CODE;
-            responseStatus = ResponseConstant.SUCCESS;
-            responseDesc = ResponseConstant.SUCCESS;
+            orderDao.addOrder(order);
+            responseWrapper.setResponseCode(ResponseConstant.SUCCESS_CODE);
+            responseWrapper.setResponseDesc(ResponseConstant.SUCCESS);
+            responseWrapper.setResponseStatus(ResponseConstant.SUCCESS);
         } catch (ParseException e){
-            responseCode = ResponseConstant.FAIL_CODE;
-            responseStatus = ResponseConstant.FAIL;
-            responseDesc = e.getMessage();
+            responseWrapper.setResponseCode(ResponseConstant.FAIL_CODE);
+            responseWrapper.setResponseDesc(ResponseConstant.FAIL);
+            responseWrapper.setResponseStatus(e.getMessage());
         }
-        responseWrapper.setResponseCode(responseCode);
-        responseWrapper.setResponseDesc(responseDesc);
-        responseWrapper.setResponseStatus(responseStatus);
 
         ResponseEntity<ResponseWrapper> response = new ResponseEntity<>(responseWrapper, HttpStatus.OK);
         return response;

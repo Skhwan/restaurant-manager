@@ -10,7 +10,7 @@ public class Menu {
     private String description;
     private String image;
     private int price;
-    private ArrayList<String> additional;
+    private String[] additional;
 
     public Menu(){}
 
@@ -45,11 +45,11 @@ public class Menu {
         this.price = price;
     }
 
-    public ArrayList<String> getAdditionals() {
+    public String[] getAdditional() {
         return additional;
     }
 
-    public void setAdditional(ArrayList<String> additional) {
+    public void setAdditional(String[] additional) {
         this.additional = additional;
     }
 
