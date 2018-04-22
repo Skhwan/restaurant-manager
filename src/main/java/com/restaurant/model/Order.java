@@ -60,4 +60,14 @@ public class Order {
         this.orderedTime = orderedTime.toString();
     }
 
+    @Override
+    public String toString(){
+        return "Order[" +
+                "billNo=" + getBillNo() +
+                "menu=" + getMenu() +
+                "quantity=" + getQuantity() +
+                "orderedTime=" + getOrderedTime() +
+                "]";
+    }
+
 }

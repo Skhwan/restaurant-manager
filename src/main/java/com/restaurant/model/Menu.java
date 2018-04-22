@@ -60,4 +60,15 @@ public class Menu {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString(){
+        return "Menu [" +
+                "name=" + getName() +
+                "description=" + getDescription() +
+                "image=" + getImage() +
+                "price=" + getPrice() +
+                "additional=" + getAdditional() +
+                "]";
+    }
 }

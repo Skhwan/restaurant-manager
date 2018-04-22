@@ -5,6 +5,8 @@ import com.restaurant.model.Menu;
 import com.restaurant.util.MenuResponseWrapper;
 import com.restaurant.util.ResponseConstant;
 import com.restaurant.util.ResponseWrapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,8 @@ import java.util.Map;
  */
 @Controller
 public class MenuController {
+
+    private final Logger logger = LoggerFactory.getLogger(MenuController.class);
 
     @Autowired
     MenuDao menuDao;
@@ -39,6 +43,8 @@ public class MenuController {
             responseWrapper.setResponseDesc(ResponseConstant.FAIL);
             responseWrapper.setResponseStatus("Got error while adding menu : " + menu.getName());
         }
+
+        logger.info(responseWrapper.toString());
         ResponseEntity<ResponseWrapper> response = new ResponseEntity<>(responseWrapper, HttpStatus.OK);
         return response;
     }
@@ -56,6 +62,8 @@ public class MenuController {
             responseWrapper.setResponseDesc(ResponseConstant.FAIL);
             responseWrapper.setResponseStatus("Got error while removing menu : " + menuName);
         }
+
+        logger.info(responseWrapper.toString());
         ResponseEntity<ResponseWrapper> response = new ResponseEntity<>(responseWrapper, HttpStatus.OK);
         return response;
     }
@@ -77,6 +85,8 @@ public class MenuController {
         responseWrapper.setResponseCode(ResponseConstant.SUCCESS_CODE);
         responseWrapper.setResponseStatus(ResponseConstant.SUCCESS);
         responseWrapper.setResponseDesc(ResponseConstant.SUCCESS);
+
+        logger.info(responseWrapper.toString());
         ResponseEntity<ResponseWrapper> response = new ResponseEntity<>(responseWrapper, HttpStatus.OK);
         return response;
     }
@@ -98,6 +108,8 @@ public class MenuController {
         responseWrapper.setResponseCode(ResponseConstant.SUCCESS_CODE);
         responseWrapper.setResponseStatus(ResponseConstant.SUCCESS);
         responseWrapper.setResponseDesc(ResponseConstant.SUCCESS);
+
+        logger.info(responseWrapper.toString());
         ResponseEntity<ResponseWrapper> response = new ResponseEntity<>(responseWrapper, HttpStatus.OK);
         return response;
     }

@@ -7,6 +7,8 @@ import com.restaurant.model.Order;
 import com.restaurant.util.OrderResponseWrapper;
 import com.restaurant.util.ResponseConstant;
 import com.restaurant.util.ResponseWrapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +18,6 @@ import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +27,8 @@ import java.util.Map;
  */
 @Controller
 public class OrderController {
+
+    private final Logger logger = LoggerFactory.getLogger(OrderController.class);
 
     @Autowired
     OrderDao orderDao;
@@ -48,6 +51,7 @@ public class OrderController {
             responseWrapper.setResponseStatus(e.getMessage());
         }
 
+        logger.info(responseWrapper.toString());
         ResponseEntity<ResponseWrapper> response = new ResponseEntity<>(responseWrapper, HttpStatus.OK);
         return response;
     }
@@ -67,6 +71,7 @@ public class OrderController {
             responseWrapper.setResponseDesc("Got Exception While removing order");
         }
 
+        logger.info(responseWrapper.toString());
         ResponseEntity<ResponseWrapper> response = new ResponseEntity<>(responseWrapper, HttpStatus.OK);
         return response;
     }
@@ -83,6 +88,7 @@ public class OrderController {
         responseWrapper.setResponseDesc(ResponseConstant.SUCCESS);
         responseWrapper.setTotalPrice(totalPrice);
 
+        logger.info(responseWrapper.toString());
         ResponseEntity<ResponseWrapper> response = new ResponseEntity<>(responseWrapper, HttpStatus.OK);
         return response;
     }
@@ -105,6 +111,7 @@ public class OrderController {
             responseWrapper.setResponseDesc("Got Exception While checking out orders");
         }
 
+        logger.info(responseWrapper.toString());
         ResponseEntity<ResponseWrapper> response = new ResponseEntity<>(responseWrapper, HttpStatus.OK);
         return response;
     }
