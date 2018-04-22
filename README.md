@@ -1,5 +1,5 @@
 # restaurant-manager
-REST api for restaurant management system using Java Spring Boot
+2-days REST API project for restaurant management system using Java Spring Boot
 
 ### Techonologies & Tools
 * Maven
