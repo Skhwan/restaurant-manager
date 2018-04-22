@@ -101,6 +101,7 @@ public class OrderController {
 
         OrderResponseWrapper responseWrapper = new OrderResponseWrapper();
         if(result > 0) {
+            responseWrapper.setOrders(orders);
             responseWrapper.setResponseCode(ResponseConstant.SUCCESS_CODE);
             responseWrapper.setResponseStatus(ResponseConstant.SUCCESS);
             responseWrapper.setResponseDesc(ResponseConstant.SUCCESS);
